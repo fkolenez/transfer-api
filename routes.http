@@ -1,0 +1,29 @@
+POST http://localhost:3333/users
+Content-Type: application/json
+
+{
+	"birth_date": "2000-01-01T00:00:00.000Z",
+	"document": "11113334111",
+	"name": "John Doe"
+}
+
+### 
+
+POST http://localhost:3333/transfers
+Content-Type: application/json
+
+{
+	"payee": {
+		"document": "11113334111",
+		"name": "John Doe"
+	},
+	"payer": {
+		"document": "11222333444455",
+		"name": "Acme Corporation"
+	},
+	"value": "10.95"
+}
+
+###
+GET http://localhost:3333/transfers/2dbc8974-855e-4aa7-9ea5-30e5a86841a0
+Content-Type: application/json
