@@ -5,7 +5,8 @@ export class Service {
     async createUser(user) {
         const { birth_date, document, name } = user;
 
-        const [createdUser] = await sql`insert into users (birth_date, document, name) VALUES (${birth_date}, ${document}, ${name}) returning *`;
+        const [createdUser] = await sql`
+        insert into users (birth_date, document, name) VALUES (${birth_date}, ${document}, ${name}) returning *`;
         return createdUser;
     }
 
@@ -16,8 +17,7 @@ export class Service {
             value 
         } = data;
 
-        const [createdTransfer] = await sql
-        `
+        const [createdTransfer] = await sql`
         insert into transfers (payee_document, payee_name, payer_document, payer_name, value) 
         VALUES (${payee_document}, ${payee_name}, ${payer_document}, ${payer_name}, ${value}) returning *;
         `;
@@ -27,7 +27,7 @@ export class Service {
     async transferConsult(id) {
         const [transferConsult] = await sql`
             select * from transfers where id = ${id};
-        `
+        `;
         return transferConsult;
     }
 

@@ -90,8 +90,22 @@ server.get('/transfers/:id', async (request, reply) => {
     const transferId = request.params.id;
 
     const consuntedTransfer = await database.transferConsult(transferId); 
-     
-    return reply.status(200).send(consuntedTransfer);
+ 
+    return reply.status(200).send({
+        conclusion_date: consuntedTransfer.conclusion_date,
+        creation_date: consuntedTransfer.creation_date,
+        last_modification_date: consuntedTransfer.last_modification_date,
+        payee: {
+            document: consuntedTransfer.payee_document,
+            name: consuntedTransfer.payee_name,
+        },
+        payer: {
+            document: consuntedTransfer.payer_document,
+            name: consuntedTransfer.payer_name,
+        },
+        status: consuntedTransfer.status,
+        value: consuntedTransfer.value,
+    });
 });
 
 server.listen({

@@ -15,7 +15,7 @@ Content-Type: application/json
 {
 	"payee": {
 		"document": "11113334111",
-		"name": "John Doe"
+		"name": "John"
 	},
 	"payer": {
 		"document": "11222333444455",
